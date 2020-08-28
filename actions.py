@@ -21,7 +21,7 @@ class UserActions:
 
     def fight(self):
         print(constants.START_BATTLE)
-        self.enemy = Enemy("Orc")
+        self.enemy = Enemy()
         while not (self.player.hp == 0 or self.enemy.hp == 0):
             self.player.attack(self.enemy)
             self.enemy.attack(self.player)
