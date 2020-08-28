@@ -1,13 +1,14 @@
+from enemy import Enemy
 from user_commands import UserCommands as UC
 
 import constants
 
 
 class UserActions:
-    def __init__(self, player, enemy):
+    def __init__(self, player):
         self.toggle_game_state = True
         self.player = player
-        self.enemy = enemy
+        self.enemy = None
         self.ACTIONS_MAP = {
             UC.fight.value: self.fight,
             UC.run.value: self.run,
@@ -20,6 +21,7 @@ class UserActions:
 
     def fight(self):
         print(constants.START_BATTLE)
+        self.enemy = Enemy("Orc")
         while not (self.player.hp == 0 or self.enemy.hp == 0):
             self.player.attack(self.enemy)
             self.enemy.attack(self.player)

@@ -23,11 +23,10 @@ class Game:
 
     def _create_characters(self, user_name):
         self.player = Hero(user_name)
-        self.enemy = Enemy("Orc")
 
     def _load_user_actions(self):
         """ Instantiates UserActions, requires created player and enemy objects """
-        self.user_actions = UserActions(self.player, self.enemy)
+        self.user_actions = UserActions(self.player)
 
     def _initalize_game(self):
         player_name = self.user_input.get_player_name()
