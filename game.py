@@ -13,9 +13,13 @@ class Game:
         self.user_actions = None
         self.player = None
         self.enemy = None
+        self.is_game_running = True
 
     def _start_message(self):
         print(constants.GAME_START)
+
+    def _update_game_state(self):
+        self.is_game_running = self.user_actions.toggle_game_state
 
     def _create_characters(self, user_name):
         self.player = Hero(user_name)
@@ -32,8 +36,10 @@ class Game:
 
     def execute(self, action):
         self.user_actions.execute_action(action)
+        self._update_game_state()
 
     def run(self):
         self._initalize_game()
-        command = self.user_input.get_user_action()
-        self.execute(command)
+        while self.is_game_running:
+            command = self.user_input.get_user_action()
+            self.execute(command)

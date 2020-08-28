@@ -5,6 +5,7 @@ import constants
 
 class UserActions:
     def __init__(self, player, enemy):
+        self.toggle_game_state = True
         self.player = player
         self.enemy = enemy
         self.ACTIONS_MAP = {
@@ -22,16 +23,18 @@ class UserActions:
         while not (self.player.hp == 0 or self.enemy.hp == 0):
             self.player.attack(self.enemy)
             self.enemy.attack(self.player)
-        self.player.check_victory()
+        player_win = self.player.check_victory()
+        if not player_win:
+            self.toggle_game_state = False
 
-    @staticmethod
-    def run():
+    def run(self):
         print(constants.RUN_AWAY)
         print(constants.GAME_OVER_LOSE)
+        self.toggle_game_state = False
 
-    @staticmethod
-    def quit():
+    def quit(self):
         print(constants.QUIT)
+        self.toggle_game_state = False
 
     def execute_action(self, action):
         self.ACTIONS_MAP[action]()
