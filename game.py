@@ -12,7 +12,6 @@ class Game:
         self.user_input = UserInput()
         self.user_actions = None
         self.player = None
-        self.enemy = None
         self.is_game_running = True
 
     def _start_message(self):
@@ -25,7 +24,6 @@ class Game:
         self.player = Hero(user_name)
 
     def _load_user_actions(self):
-        """ Instantiates UserActions, requires created player and enemy objects """
         self.user_actions = UserActions(self.player)
 
     def _initalize_game(self):
