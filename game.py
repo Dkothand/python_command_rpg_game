@@ -40,3 +40,5 @@ class Game:
         while self.is_game_running:
             command = self.user_input.get_user_action()
             self.execute(command)
+        if self.player.hp == 0:
+            print(constants.GAME_OVER_LOSE)

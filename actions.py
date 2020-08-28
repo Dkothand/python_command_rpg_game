@@ -25,8 +25,8 @@ class UserActions:
         while not (self.player.hp == 0 or self.enemy.hp == 0):
             self.player.attack(self.enemy)
             self.enemy.attack(self.player)
-        player_win = self.player.check_victory()
-        if not player_win:
+        player_survive = self.player.battle_report()
+        if not player_survive:
             self.toggle_game_state = False
 
     def run(self):

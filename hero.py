@@ -21,14 +21,11 @@ class Hero(Character):
         """
         return character
         
-    def check_victory(self):
+    def battle_report(self):
+        is_winner = True
         if self.hp > 0:
             print(f'{self.name} is victorius!')
-            print(constants.GAME_OVER_WIN)
-            self.is_victor = True
-            return self.is_victor
         else:
             print(f'{self.name} has fallen!')
-            print(constants.GAME_OVER_LOSE)
-            self.is_victor = False
-            return self.is_victor
+            is_winner = False
+        return is_winner
