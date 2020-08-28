@@ -1,18 +1,17 @@
 from character import Character
+from constants import ENEMY_NAME
 from random import choice, randint
-
 
 class Enemy(Character):
     def __init__(self):
         super().__init__()
-        self.name_options = ['Orc', 'Goblin', 'Troll', 'Bat']
         self.name = self.get_name()
         self.hp = self.get_hp()
         self.atk = self.get_atk()
         print(f'A new enemy {self.name} approaches!')
 
     def get_name(self):
-        return choice(self.name_options)
+        return choice(ENEMY_NAME)
 
     def get_hp(self):
         return randint(5,15) 
