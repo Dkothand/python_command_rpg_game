@@ -36,9 +36,7 @@ class UserInput:
         ''' Gets player name from user and validates '''
         while True:
             name = input("What is your hero's name? ")
-            is_valid = self._validate_name(name)
-
-            if is_valid:
+            if self._validate_name(name):
                 return name
 
     def get_user_action(self):
