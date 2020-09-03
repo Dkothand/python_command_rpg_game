@@ -6,37 +6,51 @@ import constants
 
 class UserActions:
     def __init__(self, player):
-        self.toggle_game_state = True
         self.player = player
-        self.enemy = None
+        self.valid_input = UC.options()
         self.ACTIONS_MAP = {
-            UC.fight.value: self.fight,
-            UC.run.value: self.run,
-            UC.quit.value: self.quit,
-            UC.character.value: self.character
+            UC.fight.value: self._fight,
+            UC.run.value: self._run,
+            UC.quit.value: self._quit,
+            UC.character.value: self._character
         }
 
-    def character(self):
-        print(self.player.__repr__())
+    def _validate_user_action(self, action):
+        is_valid = False
 
-    def fight(self):
+        if action == '':
+            print("Not a valid input")
+            return is_valid
+
+        user_input = action.strip().lower()[0]
+        if user_input in self.valid_input:
+            is_valid = True
+            return is_valid
+        print("Not a valid input")
+
+    def _character(self):
+        return "character"
+
+    def _fight(self):
         print(constants.START_BATTLE)
-        self.enemy = Enemy()
-        while not (self.player.hp == 0 or self.enemy.hp == 0):
-            self.player.attack(self.enemy)
-            self.enemy.attack(self.player)
-        player_survive = self.player.battle_report()
-        if not player_survive:
-            self.toggle_game_state = False
+        return "fight"
 
-    def run(self):
+    def _run(self):
         print(constants.RUN_AWAY)
         print(constants.GAME_OVER_LOSE)
-        self.toggle_game_state = False
+        return "exit"
 
-    def quit(self):
+    def _quit(self):
         print(constants.QUIT)
-        self.toggle_game_state = False
+        return "exit"
+
+    def get_user_action(self):
+        ''' Gets input from user and validates '''
+        while True:
+            user_input = input(constants.ACTIONS_PROMPT)
+            if self._validate_user_action(user_input):
+                return user_input            
 
     def execute_action(self, action):
-        self.ACTIONS_MAP[action]()
+        response = self.ACTIONS_MAP[action]()
+        return response
