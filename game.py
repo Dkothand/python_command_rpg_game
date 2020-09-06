@@ -37,6 +37,7 @@ class Game:
 
     def _check_victory(self, outcome):
         if outcome == "lose":
+            print(constants.GAME_OVER_LOSE)
             self._end_game()
 
     def _load_user_actions(self):
