@@ -10,7 +10,6 @@ class UserActions:
         self.valid_input = UC.options()
         self.ACTIONS_MAP = {
             UC.fight.value: self._fight,
-            UC.run.value: self._run,
             UC.quit.value: self._quit,
             UC.character.value: self._character
         }
@@ -34,11 +33,6 @@ class UserActions:
     def _fight(self):
         print(constants.START_BATTLE)
         return "fight"
-
-    def _run(self):
-        print(constants.RUN_AWAY)
-        print(constants.GAME_OVER_LOSE)
-        return "exit"
 
     def _quit(self):
         print(constants.QUIT)
